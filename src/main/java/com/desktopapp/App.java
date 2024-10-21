@@ -23,7 +23,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage arg0) throws Exception {
-        Scene scene = MainController.CreateScene();
+        Scene scene = Authentication.CreateScene();
         arg0.setScene(scene);
         arg0.show();
     }
