@@ -52,8 +52,11 @@ public class Context {
         
         try {
             return em.createQuery(primaryKey, entityClass);
-        } finally {
+        } catch (Exception e) {
+            e.printStackTrace();
             em.close();
+            em = null;
+            return null;
         }
     }
 

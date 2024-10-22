@@ -37,11 +37,14 @@ public class Authentication {
     protected PasswordField Senha;
 
     @FXML
+    protected Button btCadastrar;
+
+    @FXML
     protected void entrar(ActionEvent e) throws Exception {
         Context ctx = new Context();
 
         var query = ctx.create(UserData.class,
-            "from UserData u where u.username = :user");
+            "from UserData u where u.name = :user");
         query.setParameter("user", Nome.getText());
         List<UserData> users = query.getResultList();
 
@@ -72,7 +75,19 @@ public class Authentication {
         crrStage.close();
  
         var stage = new Stage();
-        var scene = JAVAController.CreateScene();
+        var scene = ShowMaterias.CreateScene();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    protected void cadastrar(ActionEvent e) throws Exception {
+        var crrStage = (Stage)btCadastrar
+            .getScene().getWindow();
+        crrStage.close();
+
+        var stage = new Stage();
+        var scene = CadastrarUsuario.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
