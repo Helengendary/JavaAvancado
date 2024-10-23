@@ -33,6 +33,9 @@ public class ShowMaterias implements Initializable {
     protected Button newmate;
 
     @FXML
+    protected Button editmate;
+
+    @FXML
     protected TableView<Materia> tabelo;
 
     @FXML
@@ -49,16 +52,18 @@ public class ShowMaterias implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colID.setCellValueFactory(
+
+            colID.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
-        colNOME.setCellValueFactory(
+            colNOME.setCellValueFactory(
                 new PropertyValueFactory<>("nome"));
-        colPROFE.setCellValueFactory(
+            colPROFE.setCellValueFactory(
                 new PropertyValueFactory<>("professor"));
-        colCARGA.setCellValueFactory(
+            colCARGA.setCellValueFactory(
                 new PropertyValueFactory<>("cargaHoraria"));
 
-        tabelo.setItems(listaDeMaterias());
+            tabelo.setItems(listaDeMaterias());
+        
     }
 
     @FXML
@@ -67,22 +72,33 @@ public class ShowMaterias implements Initializable {
         var crrStage = (Stage)newmate
                 .getScene().getWindow();
             crrStage.close();
-     
-            var stage = new Stage();
-            var scene = CadastrarMateria.CreateScene();
-            stage.setScene(scene);
-            stage.show();
-
-        
+    
+        var stage = new Stage();
+        var scene = CadastrarMateria.CreateScene();
+        stage.setScene(scene);
+        stage.show();
     }
 
-    private ObservableList<Materia> listaDeMaterias() {
+    @FXML
+    protected void edite(ActionEvent e) throws Exception {
+
+        var crrStage = (Stage)editmate
+                .getScene().getWindow();
+            crrStage.close();
+    
+        var stage = new Stage();
+        var scene = EditarMateria.CreateScene();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static ObservableList<Materia> listaDeMaterias() {
         Context ctx = new Context();
-        var query = ctx.create(Materia.class,
-           "from Materia");
+        var query = ctx.create(Materia.class, "from Materia");
         
         List<Materia> mates = query.getResultList();   
 
         return FXCollections.observableArrayList(mates);
     }
+
 }

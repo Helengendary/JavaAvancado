@@ -5,10 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.ShowMaterias">
    <children>
-      <TableView fx:id="tabelo" layoutY="6.0" prefHeight="323.0" prefWidth="600.0">
+      <TableView fx:id="tabelo" prefHeight="338.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="93.0" text="id" />
           <TableColumn fx:id="colNOME" prefWidth="248.0" text="Nome" />
@@ -17,5 +16,6 @@
         </columns>
       </TableView>
       <Button fx:id="newmate" layoutX="496.0" layoutY="353.0" mnemonicParsing="false" onAction="#newmate" text="Nova mate" />
+      <Button fx:id="editmate" layoutX="431.0" layoutY="353.0" mnemonicParsing="false" onAction="#edite" text="Editar" />
    </children>
 </Pane>

@@ -68,6 +68,7 @@ public class CadastrarMateria {
         var scene = ShowMaterias.CreateScene();
         stage.setScene(scene);
         stage.show();
+
     }
 
 }

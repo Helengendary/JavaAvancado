@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.EditarMateria">
+   <children>
+      <TextField fx:id="inID" layoutX="85.0" layoutY="14.0" />
+      <TextField fx:id="inNomeEdit" layoutX="131.0" layoutY="76.0" />
+      <Text layoutX="40.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+      <Text layoutX="38.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="32.619140625" />
+      <Button fx:id="pesID" layoutX="265.0" layoutY="14.0" mnemonicParsing="false" onAction="#pesquisar" text="Search" />
+      <Separator layoutY="51.0" prefHeight="5.0" prefWidth="370.0" />
+      <TextField fx:id="inProfeEdit" layoutX="131.0" layoutY="147.0" />
+      <Text layoutX="38.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor" wrappingWidth="51.261713057756424" />
+      <TextField fx:id="inCargaEdit" layoutX="131.0" layoutY="217.0" />
+      <Text layoutX="38.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga" wrappingWidth="32.619140625" />
+      <Button fx:id="confirmEdit" layoutX="265.0" layoutY="273.0" mnemonicParsing="false" onAction="#editarReal" text="Editar" />
+   </children>
+</Pane>
