@@ -48,14 +48,16 @@ public class Context {
     }
 
     public <T> TypedQuery<T> create(Class<T> entityClass, String primaryKey) {
-        EntityManager em = emf.createEntityManager();
+        this.em = emf.createEntityManager();
         
         try {
+            System.out.println("deu transaction");
+            em.getTransaction().begin();
             return em.createQuery(primaryKey, entityClass);
         } catch (Exception e) {
+            System.out.println("deu nulo");
             e.printStackTrace();
             em.close();
-            em = null;
             return null;
         }
     }

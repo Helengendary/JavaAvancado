@@ -91,6 +91,18 @@ public class ShowMaterias implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    protected void excloi(ActionEvent e) throws Exception {
+
+        var crrStage = (Stage)editmate
+                .getScene().getWindow();
+            crrStage.close();
+    
+        var stage = new Stage();
+        var scene = ExcluirMateria.CreateScene();
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static ObservableList<Materia> listaDeMaterias() {
         Context ctx = new Context();

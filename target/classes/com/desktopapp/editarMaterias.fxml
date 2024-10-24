@@ -9,10 +9,10 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.EditarMateria">
    <children>
       <TextField fx:id="inID" layoutX="85.0" layoutY="14.0" />
+      <Button fx:id="pesID" layoutX="265.0" layoutY="14.0" mnemonicParsing="false" onAction="#pesquisar" text="Search" />
       <TextField fx:id="inNomeEdit" layoutX="131.0" layoutY="76.0" />
       <Text layoutX="40.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
       <Text layoutX="38.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="32.619140625" />
-      <Button fx:id="pesID" layoutX="265.0" layoutY="14.0" mnemonicParsing="false" onAction="#pesquisar" text="Search" />
       <Separator layoutY="51.0" prefHeight="5.0" prefWidth="370.0" />
       <TextField fx:id="inProfeEdit" layoutX="131.0" layoutY="147.0" />
       <Text layoutX="38.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor" wrappingWidth="51.261713057756424" />

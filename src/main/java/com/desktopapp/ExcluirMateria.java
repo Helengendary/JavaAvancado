@@ -13,38 +13,38 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class EditarMateria {
+public class ExcluirMateria {
     public static Scene CreateScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(EditarMateria.class.getResource("editarMaterias.fxml"));
+        FXMLLoader loader = new FXMLLoader(ExcluirMateria.class.getResource("excluirMaterias.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
         return scene;
     }
 
-    int paraEditar = 0;
+        int paraEditar = 0;
     ObservableList<Materia> lista =  listaDeMaterias();
 
     @FXML
     protected Button pesID;
 
     @FXML
-    protected Button confirmEdit;
+    protected Button confirmExcluir;
 
     @FXML
     protected TextField inID;
 
     @FXML
-    protected TextField inNomeEdit;
+    protected Text infoNome;
 
     @FXML
-    protected TextField inProfeEdit;
+    protected Text infoProfe;
 
     @FXML
-    protected TextField inCargaEdit;
-
+    protected Text infoCarga;
     
     @FXML
     protected void pesquisar(ActionEvent e) throws Exception {
@@ -54,23 +54,18 @@ public class EditarMateria {
             if (lista.get(i).getId().toString().equals(inID.getText())) {
                 paraEditar = i;
 
-                inNomeEdit.setText(lista.get(i).getNome());
-                inProfeEdit.setText(lista.get(i).getProfessor());
-                inCargaEdit.setText(lista.get(i).getCargaHoraria());
+                infoNome.setText(lista.get(i).getNome());
+                infoProfe.setText(lista.get(i).getProfessor());
+                infoCarga.setText(lista.get(i).getCargaHoraria());
             }
         }
     }
 
-
-
     @FXML
-    protected void editarReal(ActionEvent e) throws Exception {
+    protected void excluirReal(ActionEvent e) throws Exception {
         
         Context ctx = new Context();
-        var query = ctx.create(null, "Update Materia Set nome = :nome, professor = :profe, cargaHoraria = :carga Where id = :id ");
-        query.setParameter("nome", inNomeEdit.getText());
-        query.setParameter("profe", inProfeEdit.getText());
-        query.setParameter("carga", inCargaEdit.getText());
+        var query = ctx.create(null, "Delete Materia Where id = :id ");
         query.setParameter("id", inID.getText());
 
         query.executeUpdate();
@@ -79,7 +74,6 @@ public class EditarMateria {
 
         voltar();
     }
-  
 
     // to usando
     public static ObservableList<Materia> listaDeMaterias() {
@@ -92,7 +86,7 @@ public class EditarMateria {
     }
     
     public void voltar() throws Exception {
-        var crrStage = (Stage)confirmEdit
+        var crrStage = (Stage)confirmExcluir
                 .getScene().getWindow();
             crrStage.close();
     

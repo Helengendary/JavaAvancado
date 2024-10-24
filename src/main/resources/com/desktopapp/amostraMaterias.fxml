@@ -15,7 +15,8 @@
           <TableColumn fx:id="colPROFE" prefWidth="173.0" text="Professor" />
         </columns>
       </TableView>
+      <Button fx:id="editmate" layoutX="377.0" layoutY="353.0" mnemonicParsing="false" onAction="#edite" text="Editar" />
+      <Button fx:id="exclmate" layoutX="435.0" layoutY="353.0" mnemonicParsing="false" onAction="#excloi" text="Excluir" />
       <Button fx:id="newmate" layoutX="496.0" layoutY="353.0" mnemonicParsing="false" onAction="#newmate" text="Nova mate" />
-      <Button fx:id="editmate" layoutX="431.0" layoutY="353.0" mnemonicParsing="false" onAction="#edite" text="Editar" />
    </children>
 </Pane>

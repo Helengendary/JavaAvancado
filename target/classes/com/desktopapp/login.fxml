@@ -8,11 +8,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.Authentication">
    <children>
+      <TextField fx:id="Nome" layoutX="64.0" layoutY="66.0" prefHeight="25.0" prefWidth="228.0" />
+      <PasswordField fx:id="Senha" layoutX="64.0" layoutY="143.0" prefHeight="25.0" prefWidth="228.0" />
       <Label layoutX="48.0" layoutY="38.0" text="Nome" />
       <Label layoutX="50.0" layoutY="117.0" text="Senha" />
-      <TextField fx:id="Nome" layoutX="64.0" layoutY="66.0" prefHeight="25.0" prefWidth="228.0" />
       <Button fx:id="btEntrar" layoutX="222.0" layoutY="202.0" mnemonicParsing="false" onAction="#entrar" text="Entrar" />
-      <PasswordField fx:id="Senha" layoutX="64.0" layoutY="143.0" prefHeight="25.0" prefWidth="228.0" />
       <Button fx:id="btCadastrar" layoutX="280.0" layoutY="202.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
    </children>
 </Pane>
