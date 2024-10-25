@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.desktopapp.model.Materia;
 
+import jakarta.persistence.TypedQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,12 +70,12 @@ public class ShowMaterias implements Initializable {
     @FXML
     protected void newmate(ActionEvent e) throws Exception {
 
-        var crrStage = (Stage)newmate
+        Stage crrStage = (Stage)newmate
                 .getScene().getWindow();
             crrStage.close();
     
-        var stage = new Stage();
-        var scene = CadastrarMateria.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = CadastrarMateria.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
@@ -82,31 +83,32 @@ public class ShowMaterias implements Initializable {
     @FXML
     protected void edite(ActionEvent e) throws Exception {
 
-        var crrStage = (Stage)editmate
+        Stage crrStage = (Stage)editmate
                 .getScene().getWindow();
             crrStage.close();
     
-        var stage = new Stage();
-        var scene = EditarMateria.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = EditarMateria.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     protected void excloi(ActionEvent e) throws Exception {
 
-        var crrStage = (Stage)editmate
+        Stage crrStage = (Stage)editmate
                 .getScene().getWindow();
             crrStage.close();
     
-        var stage = new Stage();
-        var scene = ExcluirMateria.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = ExcluirMateria.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
 
     public static ObservableList<Materia> listaDeMaterias() {
         Context ctx = new Context();
-        var query = ctx.create(Materia.class, "from Materia");
+        TypedQuery<Materia> query = ctx.create(Materia.class, "from Materia");
         
         List<Materia> mates = query.getResultList();   
 

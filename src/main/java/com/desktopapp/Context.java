@@ -2,6 +2,8 @@ package com.desktopapp;
 
 import java.util.*;
 
+import com.desktopapp.model.UserData;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -34,6 +36,7 @@ public class Context {
         List<T> users = null;
         
         try {
+            
             var queryObj = em.createQuery(query, entytyClass);
             
             for (Integer i = 0; i < values.length; i++) {

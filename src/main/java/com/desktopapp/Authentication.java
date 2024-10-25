@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.desktopapp.model.UserData;
 
+import jakarta.persistence.TypedQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class Authentication {
     protected void entrar(ActionEvent e) throws Exception {
         Context ctx = new Context();
 
-        var query = ctx.create(UserData.class,
+        TypedQuery<UserData> query = ctx.create(UserData.class,
             "from UserData u where u.name = :user");
         query.setParameter("user", Nome.getText());
         List<UserData> users = query.getResultList();
@@ -58,7 +59,7 @@ public class Authentication {
             return;
         }
         
-        var user = users.get(0);
+        UserData user = users.get(0);
 
         if (!Senha.getText().equals(user.getPassword())) {
             Alert alert = new Alert(
@@ -70,24 +71,24 @@ public class Authentication {
             return;
         }
 
-        var crrStage = (Stage)btEntrar
+        Stage crrStage = (Stage)btEntrar
             .getScene().getWindow();
         crrStage.close();
  
-        var stage = new Stage();
-        var scene = ShowMaterias.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = ShowMaterias.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     protected void cadastrar(ActionEvent e) throws Exception {
-        var crrStage = (Stage)btCadastrar
+        Stage crrStage = (Stage)btCadastrar
             .getScene().getWindow();
         crrStage.close();
 
-        var stage = new Stage();
-        var scene = CadastrarUsuario.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = CadastrarUsuario.CreateScene();
         stage.setScene(scene);
         stage.show();
     }

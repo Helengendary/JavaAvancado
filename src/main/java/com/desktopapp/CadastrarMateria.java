@@ -38,12 +38,12 @@ public class CadastrarMateria {
     @FXML
     protected void voltara(ActionEvent e) throws Exception {
 
-        var crrStage = (Stage)Voltar
+        Stage crrStage = (Stage)Voltar
                 .getScene().getWindow();
             crrStage.close();
      
-        var stage = new Stage();
-        var scene = ShowMaterias.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = ShowMaterias.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
@@ -60,12 +60,12 @@ public class CadastrarMateria {
         ctx.save(mate);
         ctx.commit();
 
-        var crrStage = (Stage)Voltar
+        Stage crrStage = (Stage)Voltar
                 .getScene().getWindow();
             crrStage.close();
      
-        var stage = new Stage();
-        var scene = ShowMaterias.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = ShowMaterias.CreateScene();
         stage.setScene(scene);
         stage.show();
 

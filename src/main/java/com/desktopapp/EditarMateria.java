@@ -3,7 +3,9 @@ package com.desktopapp;
 import java.util.List;
 
 import com.desktopapp.model.Materia;
+import com.desktopapp.model.UserData;
 
+import jakarta.persistence.TypedQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,7 +69,7 @@ public class EditarMateria {
     protected void editarReal(ActionEvent e) throws Exception {
         
         Context ctx = new Context();
-        var query = ctx.create(null, "Update Materia Set nome = :nome, professor = :profe, cargaHoraria = :carga Where id = :id ");
+        TypedQuery<Object> query = ctx.create(null, "Update Materia Set nome = :nome, professor = :profe, cargaHoraria = :carga Where id = :id ");
         query.setParameter("nome", inNomeEdit.getText());
         query.setParameter("profe", inProfeEdit.getText());
         query.setParameter("carga", inCargaEdit.getText());
@@ -84,7 +86,7 @@ public class EditarMateria {
     // to usando
     public static ObservableList<Materia> listaDeMaterias() {
         Context ctx = new Context();
-        var query = ctx.create(Materia.class, "from Materia");
+        TypedQuery<Materia> query = ctx.create(Materia.class, "from Materia");
         
         List<Materia> mates = query.getResultList();   
 
@@ -92,12 +94,12 @@ public class EditarMateria {
     }
     
     public void voltar() throws Exception {
-        var crrStage = (Stage)confirmEdit
+        Stage crrStage = (Stage)confirmEdit
                 .getScene().getWindow();
             crrStage.close();
     
-        var stage = new Stage();
-        var scene = ShowMaterias.CreateScene();
+        Stage stage = new Stage();
+        Scene scene = ShowMaterias.CreateScene();
         stage.setScene(scene);
         stage.show();
     }
