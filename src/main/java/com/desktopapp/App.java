@@ -1,5 +1,7 @@
 package com.desktopapp;
 
+import java.util.ArrayList;
+
 import com.desktopapp.model.UserData;
 
 import javafx.application.Application;
@@ -8,6 +10,7 @@ import javafx.stage.Stage;
 
 public class App extends Application{
 
+    static ArrayList<UserData> usersExistentes;
     public static void main(String[] args) {
 
         launch(args);

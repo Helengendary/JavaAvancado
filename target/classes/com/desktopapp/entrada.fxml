@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.ShowMensagens">
+   <children>
+      <TableView fx:id="emails" layoutY="45.0" prefHeight="293.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="colTitulo" prefWidth="341.0" text="Titulo" />
+          <TableColumn fx:id="colMensageiro" prefWidth="182.0" text="Mensageiro" />
+          <TableColumn fx:id="colVer" prefWidth="76.0" />
+        </columns>
+      </TableView>
+      <Button fx:id="novoEmail" layoutX="547.0" layoutY="354.0" mnemonicParsing="false" onAction="#newmate" text="+" />
+      <Text layoutX="22.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Olá, " />
+      <Text fx:id="apresenta" layoutX="46.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text" />
+   </children>
+</Pane>

@@ -2,8 +2,6 @@ package com.desktopapp;
 
 import java.util.*;
 
-import com.desktopapp.model.UserData;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -54,11 +52,9 @@ public class Context {
         this.em = emf.createEntityManager();
         
         try {
-            System.out.println("deu transaction");
             em.getTransaction().begin();
             return em.createQuery(primaryKey, entityClass);
         } catch (Exception e) {
-            System.out.println("deu nulo");
             e.printStackTrace();
             em.close();
             return null;

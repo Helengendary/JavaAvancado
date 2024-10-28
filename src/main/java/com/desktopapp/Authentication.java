@@ -28,46 +28,26 @@ public class Authentication {
         return scene;
     }
 
+    
     @FXML
     protected Button btEntrar;
-
+    
     @FXML
     protected TextField Nome;
-
+    
     @FXML
     protected PasswordField Senha;
-
+    
     @FXML
     protected Button btCadastrar;
 
     @FXML
     protected void entrar(ActionEvent e) throws Exception {
-        Context ctx = new Context();
-
-        TypedQuery<UserData> query = ctx.create(UserData.class,
-            "from UserData u where u.name = :user");
-        query.setParameter("user", Nome.getText());
-        List<UserData> users = query.getResultList();
-
-        if (users.size() == 0) {
-            Alert alert = new Alert(
-                AlertType.ERROR,
-                "Usuário não encontrado",
-                ButtonType.OK
-            );
-            alert.show();
+        if (!existeUser()) {
+            AlertErro("Usuário não encontrado!");
             return;
-        }
-        
-        UserData user = users.get(0);
-
-        if (!Senha.getText().equals(user.getPassword())) {
-            Alert alert = new Alert(
-                AlertType.ERROR,
-                "Senha incorreta!",
-                ButtonType.OK
-            );
-            alert.show();
+        } else if (!senhaCorreta()) {
+            AlertErro("Senha incorreta!");
             return;
         }
 
@@ -76,7 +56,7 @@ public class Authentication {
         crrStage.close();
  
         Stage stage = new Stage();
-        Scene scene = ShowMaterias.CreateScene();
+        Scene scene = ShowMensagens.CreateScene(Nome.getText());
         stage.setScene(scene);
         stage.show();
     }
@@ -91,5 +71,66 @@ public class Authentication {
         Scene scene = CadastrarUsuario.CreateScene();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public boolean existeUser() {
+        Context ctx = new Context();
+
+        TypedQuery<UserData> queryNome = ctx.create(UserData.class,
+            "from UserData u where u.name = :user");
+        queryNome.setParameter("user", Nome.getText());
+
+        TypedQuery<UserData> queryEmail = ctx.create(UserData.class,
+            "from UserData u where u.email = :user");
+        queryEmail.setParameter("user", Nome.getText());
+
+        List<UserData> usersname = queryNome.getResultList();
+        List<UserData> usersemail = queryEmail.getResultList();
+
+        if (usersname.size() > 0 || usersemail.size() > 0) {
+            return true; 
+        }
+
+        return false;
+    }
+
+    public boolean senhaCorreta() {
+        Context ctx = new Context();
+
+        TypedQuery<UserData> queryNome = ctx.create(UserData.class,
+            "from UserData u where u.name = :user");
+        queryNome.setParameter("user", Nome.getText());
+
+        TypedQuery<UserData> queryEmail = ctx.create(UserData.class,
+            "from UserData u where u.email = :user");
+        queryEmail.setParameter("user", Nome.getText());
+
+        List<UserData> usersname = queryNome.getResultList();
+        List<UserData> usersemail = queryEmail.getResultList();
+
+        for (UserData userData : usersname) {
+             
+            if (userData.getPassword().equals(Senha.getText())) {
+                return true;
+            }
+        }
+
+        for (UserData userData : usersemail) {
+             
+            if (userData.getPassword().equals(Senha.getText())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void AlertErro(String conteudo) {
+        Alert alert = new Alert(
+            AlertType.ERROR,
+            conteudo,
+            ButtonType.OK
+        );
+        alert.show();
     }
 }
