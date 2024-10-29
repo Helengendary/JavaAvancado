@@ -1,10 +1,5 @@
-com\desktopapp\model\Materia.class
-com\desktopapp\model\UserData.class
-com\desktopapp\Context.class
-com\desktopapp\EditarMateria.class
-com\desktopapp\CadastrarUsuario.class
-com\desktopapp\ShowMaterias.class
-com\desktopapp\ExcluirMateria.class
-com\desktopapp\App.class
-com\desktopapp\Authentication.class
-com\desktopapp\CadastrarMateria.class
+com\example\demo\controllers\TestController.class
+com\example\demo\DemoApplication.class
+com\example\demo\controllers\UserController.class
+com\example\demo\dto\LoginData.class
+com\example\demo\dto\SumResult.class
