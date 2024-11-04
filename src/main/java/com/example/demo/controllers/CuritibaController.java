@@ -9,10 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/curitiba")
 public class CuritibaController {
 
-        // @GetMapping
-        // public Curitiba Revert(String cep, String cpf) {
+//         @GetMapping
+//         public Curitiba Revert(String cep, String cpf) {
 
-        
-        //     return new Curitiba();
-        // }   
+//             // request
+//             //     String linkCep = "https://viacep.com.br/ws/" + cep + "/json";
+            
+//             //     var client = HttpClient.newHttpClient();
+
+//             //     var request = HttpRequest.newBuilder(
+//             //     URI.create(linkCep))
+//             //         .header("accept", "application/json")
+//             //         .build();
+
+
+
+//             return new Curitiba();
+//         }   
 }
