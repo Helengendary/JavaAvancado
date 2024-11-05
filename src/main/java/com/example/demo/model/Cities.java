@@ -10,13 +10,13 @@ import jakarta.persistence.Id;
 public class Cities {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
-
-    @Column private String cidade;
-
-    @Column private String estado;
+    private Long id;
 
     @Column private String pais;
+    
+    @Column private String cidade;
+    
+    @Column private String estado;
 
     public long getId() {
         return id;

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Cities;
+import com.example.demo.model.Userdata;
 
 @Repository
-public interface  CitiesRepository extends JpaRepository<Cities, Long> {
-    List<Cities> findByCidade(String cidade);
+public interface UserRepository extends JpaRepository<Userdata, Long>{
+    List<Userdata> findByEmail(String email);
 }
