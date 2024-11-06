@@ -26,8 +26,6 @@ public class CitiesController {
     public ResponseEntity<List<CitiesDto>> getAll() {
 
         var cities = repo.findAll().stream().map(a -> new CitiesDto( a.getPais(), a.getCidade(), a.getEstado())).collect(Collectors.toList());
-
-        System.out.println(cities);
         
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
