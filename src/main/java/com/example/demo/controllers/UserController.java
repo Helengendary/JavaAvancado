@@ -1,17 +1,29 @@
 package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.JWTdto;
 import com.example.demo.dto.NewPassword;
+import com.example.demo.dto.Produtodto;
+import com.example.demo.dto.Token;
 import com.example.demo.dto.UserDto;
+import com.example.demo.dto.UserLogar;
+import com.example.demo.impl.DefaultJWTService;
 import com.example.demo.model.Userdata;
 import com.example.demo.repositories.UserRepository;
+import com.example.demo.service.EncodePass;
+import com.example.demo.service.JWTService;
+
+import jakarta.servlet.http.HttpSessionAttributeListener;
 
 @CrossOrigin(origins={"http://localhost:5257"})
 @RestController
@@ -21,8 +33,14 @@ public class UserController {
     @Autowired
     UserRepository repo;
 
+    @Autowired
+    EncodePass encoder;
+
+    @Autowired
+    JWTService<Token> jwt;
+
     @PostMapping("/create")
-    public String login(@RequestBody UserDto data) {
+    public String create(@RequestBody UserDto data) {
 
         boolean padraoEmail = false;
         boolean minuscula = false;
@@ -76,7 +94,7 @@ public class UserController {
         Userdata newUser = new Userdata();
         newUser.setApelido(data.username());
         newUser.setEmail(data.email());
-        newUser.setSenha(data.password());
+        newUser.setSenha(encoder.encode(data.password()));
 
         repo.save(newUser);
 
@@ -119,7 +137,7 @@ public class UserController {
         var users = repo.findAll();
 
         for (Userdata userdata : users) {
-            if (data.password().equals(userdata.getSenha()) && data.username().equals(userdata.getApelido())) {
+            if (encoder.matches(data.password(), userdata.getSenha()) && data.username().equals(userdata.getApelido())) {
                 userdata.setSenha(data.newPassword());
                 repo.save(userdata);
                 return "Usuário updatado!";
@@ -127,5 +145,58 @@ public class UserController {
         }
         
         return "Usuário não existe!";
+    }
+
+    @PostMapping("/login")
+    public JWTdto login(@RequestBody UserLogar data) {
+   
+        var users = repo.findAll();
+
+        for (Userdata userdata : users) {
+            if (data.login().equals(userdata.getEmail()) || data.login().equals(userdata.getApelido())) {
+
+                if (encoder.matches(data.password(), userdata.getSenha())) {
+                    return new JWTdto("logou!", jwt.get(new Token(userdata.getId())));
+                } else {
+                    return new JWTdto("Senha incorreta!", "");
+                }
+            }
+        }
+        return new JWTdto("Usuário não cadastrado!", "");
+    }
+
+    @PostMapping("/product")
+    public ResponseEntity<String> validar(@RequestBody Produtodto data, @RequestHeader("Authorization") String token) {
+   
+        System.out.print("VAAAAAAAAAAAA " + token);
+
+        Token atual = jwt.validate(token);
+
+        var users = repo.findAll();
+        boolean padraoEmail = false;
+        String dominio = "";
+
+        for (Userdata userdata : users) {
+            if (atual.id() == userdata.getId()) {
+                for (int i = 0; i < userdata.getEmail().length(); i++) {
+                    if (userdata.getEmail().charAt(i) == '@' && i>0) {
+                        padraoEmail = true;
+                    } else if (padraoEmail) {
+                        dominio += userdata.getEmail().charAt(i);
+                    }
+                }
+            }
+        }
+
+        if (users.size() == 0) {
+            return new ResponseEntity<>("dfdsf", HttpStatus.valueOf(401));
+        }
+
+        if (dominio.contentEquals("@loja.com")) {
+            return new ResponseEntity<>("dfdsf", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("dfdsf", HttpStatus.valueOf(403));
+        }
+
     }
 }
