@@ -14,9 +14,9 @@ public class Userdata {
 
     @Column private String apelido;
 
-    @Column private String email;
-
     @Column private String senha;
+
+    @Column private String usercode;
 
     public Long getId() {
         return id;
@@ -34,19 +34,19 @@ public class Userdata {
         this.apelido = apelido;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getUsercode() {
+        return usercode;
+    }
+
+    public void setUsercode(String usercode) {
+        this.usercode = usercode;
     }
 }

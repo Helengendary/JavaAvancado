@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-public record Curitiba(
-    Boolean success,
+public record UserCode(
+    String usercode,
     String message
 ) {}
