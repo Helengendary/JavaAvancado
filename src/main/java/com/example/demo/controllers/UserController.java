@@ -51,6 +51,19 @@ public class UserController {
             return "Nenhum campo pode estar vazio";
         }
 
+//JEITO DO EDUARDO DE VER "@"        
+    // @Override
+    // public Boolean validateEmail(String email)
+    // {
+    //     int at = email.indexOf("@");
+
+    //     if (at > 0 && at != email.length-1) {
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    // }
+        
         for (int i = 0; i < data.email().length(); i++) {
             if (data.email().charAt(i) == '@' && i>0) {
                 padraoEmail = true;
